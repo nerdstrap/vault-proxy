@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 // import morgan package
 const morgan = require('morgan');
@@ -12,13 +13,20 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-// defining routes
-// const ordersRoutes = require('./routes/orders')
-// app.use('/orders', ordersRoutes);
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 const authRoutes = require('./routes/auth')
 app.use('/auth', authRoutes);
 
+const uploadRoutes = require('./routes/upload')
+app.use('/fileupload', uploadRoutes);
+
+const documentRoutes = require('./routes/documents')
+app.use('/documents', documentRoutes);
 
 app.use((req, res, next) => {
     req.header('Access-Controll-Allow-Orgin','*');
