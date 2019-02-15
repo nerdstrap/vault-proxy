@@ -3,7 +3,6 @@ const router = express.Router();
 const axios = require('axios');
 const qs = require('querystring');
 
-// handle incoming request to /users
 router.post('/', (req, res, next) => {
     const API_URL = 'https://vv-consulting-candidate-rd-exercise22.veevavault.com/api/v19.1';
     const requestBody = {
